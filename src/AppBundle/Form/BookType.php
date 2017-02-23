@@ -17,8 +17,8 @@ class BookType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class, array('label'=> 'name'))
-            ->add('price', TextType::class, array('label'=> 'price'))
+            ->add('name', TextType::class, ['label'=> 'name'])
+            ->add('price', TextType::class, ['label'=> 'price'])
         ;
     }
 
@@ -27,10 +27,10 @@ class BookType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => Book::class,
             'csrf_protection'   => false,
-        ));
+        ]);
     }
 
     /**

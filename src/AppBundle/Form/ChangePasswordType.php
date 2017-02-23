@@ -18,8 +18,8 @@ class ChangePasswordType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', EmailType::class, array('label'=> 'email'))
-            ->add('password', TextType::class, array('label'=> 'password'))
+            ->add('email', EmailType::class, ['label'=> 'email'])
+            ->add('password', TextType::class, ['label'=> 'password'])
             ;
     }
 
@@ -28,10 +28,10 @@ class ChangePasswordType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => User::class,
             'csrf_protection'   => false,
-        ));
+        ]);
     }
 
     /**
