@@ -8,7 +8,7 @@ Simple Example Api Rest Book with Symfony 3.3 and JWT(Json Web Token)
 
 ```
     $ curl -s http://getcomposer.org/installer | php
-    $ php composer.phar install
+    $ php composer.phar install or composer install
 ```
 ## Generate the SSH keys
 
