@@ -2,7 +2,7 @@
 
 namespace AppBundle\Security;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Lexik\Bundle\JWTAuthenticationBundle\Encoder\JWTEncoderInterface;
 use Lexik\Bundle\JWTAuthenticationBundle\TokenExtractor\AuthorizationHeaderTokenExtractor;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -22,7 +22,7 @@ class JwtAuthenticator extends AbstractGuardAuthenticator
 
     private $jwtEncoder;
 
-    public function __construct(EntityManager $em, JWTEncoderInterface $jwtEncoder)
+    public function __construct(EntityManagerInterface $em, JWTEncoderInterface $jwtEncoder)
     {
         $this->em = $em;
         $this->jwtEncoder = $jwtEncoder;
