@@ -7,8 +7,13 @@ use AppBundle\Event\EmailForgotPasswordEvent;
 
 class MailForgotPasswordListener
 {
-    public function __construct(\Swift_Mailer $mailer)
+    protected $twig;
+
+    protected $mailer;
+
+    public function __construct(\Twig_Environment $twig, \Swift_Mailer $mailer)
     {
+        $this->twig = $twig;
         $this->mailer = $mailer;
     }
 
@@ -18,33 +23,26 @@ class MailForgotPasswordListener
         $email = $event->getUser()->getEmail();
         $password = $event->getUser()->getPassword();
 
+        $body = $this->renderTemplate($name, $password);
+
         $message = \Swift_Message::newInstance()
             ->setSubject('Change Password Success!')
             ->setFrom($email)
             ->setTo($email)
-            ->setBody('Change Password Success! This is your new password: ' . $password)
-    /*
-            ->setBody(
-                $this->renderView(
-                    // app/Resources/views/Emails/registration.html.twig
-                    'emails/forgotPassword.html.twig',
-                    array('name' => $name)
-                ),
-                'text/html'
-            )
-    */
-            /*
-             * If you also want to include a plaintext version of the message
-            ->addPart(
-                $this->renderView(
-                    'Emails/forgotPassword.txt.twig',
-                    array('name' => $name)
-                ),
-                'text/plain'
-            )
-            */
+            ->setBody($body, 'text/html')
         ;
 
         $this->mailer->send($message);
+    }
+
+    protected function renderTemplate($name, $password)
+    {
+		return $this->twig->render(
+            'Emails/registration.html.twig',
+            [
+                'name' => $name,
+				'password' => $password
+            ]
+        );
     }
 }
