@@ -38,4 +38,9 @@ services:
         tags:
             - { name: kernel.event_listener, event: forgot.password.event.email_fogot_password_event, method: onMailForgotPasswordEvent }
 
+    AppBundle\EventListener\MailChangePasswordListener:
+        arguments: ['@twig', '@mailer']
+        tags:
+            - { name: kernel.event_listener, event: change.password.event.email_change_password_event, method: onMailChangePasswordEvent }
+
 
