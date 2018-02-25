@@ -43,4 +43,9 @@ services:
         tags:
             - { name: kernel.event_listener, event: change.password.event.email_change_password_event, method: onMailChangePasswordEvent }
 
+    AppBundle\EventListener\MailRegistrationUserListener:
+        arguments: ['@twig', '@mailer']
+        tags:
+            - { name: kernel.event_listener, event: registration.user.event.email_registration_user_event, method: onMailRegistrationUserEvent }
+
 
