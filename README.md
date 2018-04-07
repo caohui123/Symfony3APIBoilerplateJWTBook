@@ -39,3 +39,9 @@ Simple Example Api Rest Book with Symfony 3.3 and JWT(Json Web Token)
 ```
     $ curl -H 'content-type: application/json' -v -X GET http://127.0.0.1:8000/api/books  -H 'Authorization: Bearer :token' 
 ```
+
+## Getting phpunit
+
+``` 
+    $ ./vendor/bin/phpunit
+```
